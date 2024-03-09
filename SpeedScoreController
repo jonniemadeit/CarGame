@@ -1,0 +1,50 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class SpeedScoreController : MonoBehaviour
+{
+    public Rigidbody rb;
+    public Text mphText;
+    public Text scoreText;
+
+    private float mph;
+    private int overallScore;
+
+    private void Start()
+    {
+        overallScore = 0;
+        UpdateUIText();
+    }
+
+    private void FixedUpdate()
+    {
+        CalculateSpeed();
+        UpdateUIText();
+    }
+
+    private void CalculateSpeed()
+    {
+        // Calculate speed in miles per hour (mph)
+        mph = rb.velocity.magnitude * 2.23694f; // 1 meter per second = 2.23694 miles per hour
+
+        // Calculate score based on speed
+        int scoreToAdd = Mathf.RoundToInt(mph);
+        overallScore += scoreToAdd;
+    }
+
+    private void UpdateUIText()
+    {
+        // Update UI text to display mph and overall score
+        mphText.text = "Speed: " + mph.ToString("F2") + " mph";
+        scoreText.text = "Overall Score: " + overallScore.ToString();
+    }
+
+    public void ResetScore()
+    {
+        mph = 0;
+        overallScore = 0;
+    }
+
+}
