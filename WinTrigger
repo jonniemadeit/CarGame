@@ -1,0 +1,28 @@
+using UnityEngine;
+using UnityEngine.Events;
+
+public class WinTrigger : MonoBehaviour
+{
+    // Set this to true if you want the event to occur only once
+    public bool triggerOnlyOnce = true;
+
+    // Event to perform when trigger happens
+    public UnityEvent triggerEvent;
+
+    // Flag to track if trigger happened already
+    private bool triggerOccurred = false;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Check if trigger occurred
+        if (!triggerOccurred)
+        {
+            // Invoke the event
+            triggerEvent.Invoke();
+
+            // If we're set to trigger only once, mark trigger as occurred
+            if (triggerOnlyOnce)
+                triggerOccurred = true;
+        }
+    }
+}
