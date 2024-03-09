@@ -38,7 +38,7 @@ public class SpeedScoreController : MonoBehaviour
     {
         // Update UI text to display mph and overall score
         mphText.text = "Speed: " + mph.ToString("F2") + " mph";
-        scoreText.text = "Overall Score: " + overallScore.ToString();
+        scoreText.text = "Score: " + overallScore.ToString();
     }
 
     public void ResetScore()
@@ -48,3 +48,4 @@ public class SpeedScoreController : MonoBehaviour
     }
 
 }
+
